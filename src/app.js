@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const webRouter = require('./router/wed'); 
+const fileUpload = require('express-fileupload');
 const { connection } = require('./config/database');
 const app = express();
 const port = 3000;
@@ -8,7 +9,8 @@ const port = 3000;
 // Middleware parse body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+// Middleware upload file
+app.use(fileUpload());
 // Cấu hình EJS
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
